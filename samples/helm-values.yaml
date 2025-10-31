@@ -1,0 +1,16 @@
+image:
+  repository: nginx
+  tag: latest
+
+service:
+  type: LoadBalancer
+  port: 80
+
+env:
+  - name: API_TOKEN
+    value: "abc123token"
+
+resources:
+  requests:
+    cpu: "100m"
+    memory: "128Mi"

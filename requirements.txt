@@ -1,0 +1,41 @@
+# ==============================
+# LCS-Scanner v5 Requirements
+# ==============================
+
+# Core language compatibility
+python>=3.8,<3.13
+
+# Core libraries (used throughout the scanner)
+colorama>=0.4.6          # For colored CLI output
+tqdm>=4.66.0             # For progress bars
+jinja2>=3.1.3            # For HTML report templating
+yara-python>=4.3.1       # For YARA rule matching (optional but supported)
+requests>=2.31.0         # For CVE/Intel stubs or future API integrations
+
+# Data and serialization
+pyyaml>=6.0.2            # For YAML-based IaC parsing
+jsonschema>=4.21.0       # For validating structured data (optional)
+
+# Security / Analysis utilities
+regex>=2024.4.16         # Enhanced regex features and safety
+cryptography>=43.0.0     # Placeholder for future crypto checks (optional)
+
+# HTML / Reporting / Visualization
+jinja2>=3.1.3            # HTML templating engine (Chart.js + GSAP inlined via CDN)
+markupsafe>=2.1.5        # Required for Jinja2 sandbox safety
+
+# Concurrency / performance
+futures; python_version<'3.2'  # For older Python compatibility
+psutil>=5.9.8             # For potential performance monitoring
+
+# Optional AI or ML (lightweight heuristics)
+scikit-learn>=1.4.2       # For heuristic scoring models (optional future extension)
+numpy>=1.26.0             # Required by scikit-learn
+pandas>=2.2.2             # For CSV/JSON manipulation
+
+# Optional web framework (for future web dashboard mode)
+flask>=3.0.3              # Optional: serve reports via browser
+
+# Development / Testing utilities
+pytest>=8.0.0
+black>=24.3.0

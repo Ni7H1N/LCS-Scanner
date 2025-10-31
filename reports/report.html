@@ -1,0 +1,388 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>🚀 LCS-Scanner — Futuristic CyberOps Report</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<style>
+/* compacted theme for embedded template (same as earlier design) */
+:root{--bg:#04050a;--panel:#071028aa;--accent:#22d3ee;--accent2:#7c3aed;--muted:#94a3b8}
+body{background:linear-gradient(180deg,#02040a,#051025);color:#e6eef8;font-family:Inter,Arial;padding:28px;margin:0}
+.wrap{max-width:1200px;margin:0 auto}
+h1{font-weight:700;font-size:28px;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;color:transparent}
+.card{background:rgba(7,16,40,0.6);border-radius:12px;padding:14px;border:1px solid rgba(255,255,255,0.03);margin-top:12px}
+.finding{background:linear-gradient(180deg,rgba(7,16,40,0.7),rgba(2,6,16,0.45));padding:12px;border-radius:10px;margin-top:10px;border:1px solid rgba(124,58,237,0.03)}
+.meta{color:var(--muted);font-size:13px}
+.badge{display:inline-block;padding:4px 8px;border-radius:999px;background:rgba(255,255,255,0.02);font-size:12px;color:var(--muted)}
+.sev{display:inline-block;padding:6px 10px;border-radius:999px;font-weight:700;color:#031126}
+.sev-High{background:#ef4444;color:white}.sev-Critical{background:#7f1d1d;color:white}.sev-Medium{background:#f97316;color:white}.sev-Low{background:#16a34a;color:#062015}.sev-Info{background:#3b82f6;color:white}
+.search,select{padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit}
+.footer{color:var(--muted);margin-top:20px;text-align:center}
+@media (max-width:900px){.two-col{display:block}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>LCS-Scanner — Futuristic CyberOps Report</h1>
+  <div class="meta">Generated: 2025-10-31T00:18:25.598706+00:00</div>
+
+  <div class="card" style="display:flex;gap:18px;align-items:center;">
+    <div style="flex:1">
+      <div style="font-weight:700">Summary</div>
+      <div class="meta">11 findings • 6 files scanned • Top tags: network, aws, azure, storage, docker, versioning, code, secrets</div>
+    </div>
+    <div style="width:340px;">
+      <canvas id="sevChart" height="120"></canvas>
+    </div>
+  </div>
+
+  <div class="card">
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <input id="searchBox" class="search" placeholder="Search findings...">
+      <select id="sevFilter" class="search"><option value="">Severity</option><option>Critical</option><option>High</option><option>Medium</option><option>Low</option><option>Info</option></select>
+      <select id="tagFilter" class="search"><option value="">Tag</option><option value="network">network</option><option value="aws">aws</option><option value="azure">azure</option><option value="storage">storage</option><option value="docker">docker</option><option value="versioning">versioning</option><option value="code">code</option><option value="secrets">secrets</option><option value="encryption">encryption</option><option value="gcp">gcp</option><option value="helm">helm</option><option value="k8s">k8s</option></select>
+      <div style="flex:1"></div>
+      <button onclick="exportJSON()">JSON</button>
+      <button onclick="exportCSV()">CSV</button>
+      <button onclick="window.print()">Print</button>
+    </div>
+
+    <div id="findings">
+      
+      <div class="finding" data-sev="High" data-tags="azure,network" data-title="azure nsg allows all">
+        <div style="display:flex;justify-content:space-between">
+          <div><strong>Azure NSG Allows All</strong><div class="meta">./samples\azure.tf • <span class="badge">azure, network</span></div></div>
+          <div style="text-align:right">
+            <div class="meta">Confidence: Medium</div>
+            <div style="height:6px"></div>
+            <div class="sev sev-High">High</div>
+          </div>
+        </div>
+        <div style="margin-top:8px" class="meta"><b>Explain:</b> Inbound rule exposes entire network.</div>
+        <div style="margin-top:6px" class="meta"><b>AI Context:</b> Improper Access Control — access not properly restricted. Risk domain(s): Cloud Misconfiguration (Azure), Attack Surface / Network Exposure.</div>
+        <div style="margin-top:6px" class="meta"><b>Intel:</b> {'source': 'Local DB', 'cve': None, 'threat': 'No known active exploit.', 'exploit': 'None detected', 'cvss': 2.8}</div>
+            
+                <div style="margin-top:6px" class="meta">
+                   <b>Compliance:</b>
+               
+                  <div><b>info:</b> No direct mapping found</div>
+              
+            </div>
+
+
+      </div>
+      
+      <div class="finding" data-sev="Medium" data-tags="azure,encryption" data-title="azure storage allows http">
+        <div style="display:flex;justify-content:space-between">
+          <div><strong>Azure Storage Allows HTTP</strong><div class="meta">./samples\azure.tf • <span class="badge">azure, encryption</span></div></div>
+          <div style="text-align:right">
+            <div class="meta">Confidence: Medium</div>
+            <div style="height:6px"></div>
+            <div class="sev sev-Medium">Medium</div>
+          </div>
+        </div>
+        <div style="margin-top:8px" class="meta"><b>Explain:</b> HTTP enabled for Azure storage endpoints.</div>
+        <div style="margin-top:6px" class="meta"><b>AI Context:</b> Cleartext transmission of sensitive information. Risk domain(s): Cloud Misconfiguration (Azure), Encryption.</div>
+        <div style="margin-top:6px" class="meta"><b>Intel:</b> {'source': 'Local DB', 'cve': None, 'threat': 'No known active exploit.', 'exploit': 'None detected', 'cvss': 5.8}</div>
+            
+                <div style="margin-top:6px" class="meta">
+                   <b>Compliance:</b>
+               
+                  <div><b>info:</b> No direct mapping found</div>
+              
+            </div>
+
+
+      </div>
+      
+      <div class="finding" data-sev="High" data-tags="aws,network" data-title="aws security group allows all ingress">
+        <div style="display:flex;justify-content:space-between">
+          <div><strong>AWS Security Group Allows All Ingress</strong><div class="meta">./samples\gcp.tf • <span class="badge">aws, network</span></div></div>
+          <div style="text-align:right">
+            <div class="meta">Confidence: Medium</div>
+            <div style="height:6px"></div>
+            <div class="sev sev-High">High</div>
+          </div>
+        </div>
+        <div style="margin-top:8px" class="meta"><b>Explain:</b> Firewall ingress allows all IPs (0.0.0.0/0).</div>
+        <div style="margin-top:6px" class="meta"><b>AI Context:</b> Improper Access Control — access not properly restricted. Risk domain(s): Cloud Misconfiguration (AWS), Attack Surface / Network Exposure. Unrestricted ingress allows anyone on the internet to reach the resource. Restrict CIDRs, disable public ingress, use zero-trust firewalls.</div>
+        <div style="margin-top:6px" class="meta"><b>Intel:</b> {'source': 'Local DB', 'cve': 'CVE-2022-56789', 'threat': 'Unrestricted network exposure', 'exploit': 'Exploit observed', 'cvss': 7.5}</div>
+            
+                <div style="margin-top:6px" class="meta">
+                   <b>Compliance:</b>
+               
+                  <div><b>info:</b> No direct mapping found</div>
+              
+            </div>
+
+
+      </div>
+      
+      <div class="finding" data-sev="High" data-tags="gcp,storage" data-title="gcp bucket public access">
+        <div style="display:flex;justify-content:space-between">
+          <div><strong>GCP Bucket Public Access</strong><div class="meta">./samples\gcp.tf • <span class="badge">gcp, storage</span></div></div>
+          <div style="text-align:right">
+            <div class="meta">Confidence: Medium</div>
+            <div style="height:6px"></div>
+            <div class="sev sev-High">High</div>
+          </div>
+        </div>
+        <div style="margin-top:8px" class="meta"><b>Explain:</b> Public binding grants open access to data.</div>
+        <div style="margin-top:6px" class="meta"><b>AI Context:</b> Improper Access Control — access not properly restricted. Risk domain(s): Cloud Misconfiguration (GCP), Storage. Unrestricted ingress allows anyone on the internet to reach the resource. Restrict CIDRs, disable public ingress, use zero-trust firewalls.</div>
+        <div style="margin-top:6px" class="meta"><b>Intel:</b> {'source': 'Local DB', 'cve': 'CVE-2021-99999', 'threat': 'Sensitive data exposure', 'exploit': 'Used in campaigns', 'cvss': 9.0}</div>
+            
+                <div style="margin-top:6px" class="meta">
+                   <b>Compliance:</b>
+               
+                  <div><b>CIS:</b> CIS Control 13.6: Protect data in transit and at rest</div>
+              
+                  <div><b>ISO27001:</b> ISO 27001 A.13.2.1: Information transfer policies and procedures</div>
+              
+                  <div><b>NIST:</b> NIST SP 800-53 AC-4: Information Flow Enforcement</div>
+              
+                  <div><b>GDPR:</b> GDPR Art. 32: Security of processing</div>
+              
+                  <div><b>PCI-DSS:</b> PCI DSS Req. 4.1: Protect cardholder data in transit</div>
+              
+            </div>
+
+
+      </div>
+      
+      <div class="finding" data-sev="Low" data-tags="docker,versioning" data-title="docker uses latest tag">
+        <div style="display:flex;justify-content:space-between">
+          <div><strong>Docker Uses Latest Tag</strong><div class="meta">./samples\Dockerfile • <span class="badge">docker, versioning</span></div></div>
+          <div style="text-align:right">
+            <div class="meta">Confidence: Medium</div>
+            <div style="height:6px"></div>
+            <div class="sev sev-Low">Low</div>
+          </div>
+        </div>
+        <div style="margin-top:8px" class="meta"><b>Explain:</b> Non-versioned tag reduces reproducibility.</div>
+        <div style="margin-top:6px" class="meta"><b>AI Context:</b> Unpinned dependencies / version control issue. Risk domain(s): Docker, Versioning.</div>
+        <div style="margin-top:6px" class="meta"><b>Intel:</b> {'source': 'Local DB', 'cve': None, 'threat': 'No known active exploit.', 'exploit': 'None detected', 'cvss': 5.9}</div>
+            
+                <div style="margin-top:6px" class="meta">
+                   <b>Compliance:</b>
+               
+                  <div><b>info:</b> No direct mapping found</div>
+              
+            </div>
+
+
+      </div>
+      
+      <div class="finding" data-sev="High" data-tags="code,secrets" data-title="plaintext password found">
+        <div style="display:flex;justify-content:space-between">
+          <div><strong>Plaintext Password Found</strong><div class="meta">./samples\Dockerfile • <span class="badge">code, secrets</span></div></div>
+          <div style="text-align:right">
+            <div class="meta">Confidence: High</div>
+            <div style="height:6px"></div>
+            <div class="sev sev-High">High</div>
+          </div>
+        </div>
+        <div style="margin-top:8px" class="meta"><b>Explain:</b> Sensitive password hardcoded.</div>
+        <div style="margin-top:6px" class="meta"><b>AI Context:</b> Plaintext storage of sensitive credentials. Risk domain(s): Source Code Risk, Credential Management Risk. Hardcoded or plaintext secrets increase credential theft risk. Move secrets to a managed vault service and rotate keys regularly.</div>
+        <div style="margin-top:6px" class="meta"><b>Intel:</b> {'source': 'Local DB', 'cve': 'CVE-2023-12345', 'threat': 'Credential leakage risk', 'exploit': 'Exploit observed', 'cvss': 8.1}</div>
+            
+                <div style="margin-top:6px" class="meta">
+                   <b>Compliance:</b>
+               
+                  <div><b>CIS:</b> CIS Control 6.2: Ensure secure credentials management, CIS Control 5.4: Manage service account credentials securely</div>
+              
+                  <div><b>ISO27001:</b> ISO 27001 A.9.2.3: Management of privileged access rights, ISO 27001 A.9.4.3: Password management system</div>
+              
+                  <div><b>NIST:</b> NIST SP 800-53 IA-5: Authenticator Management, NIST SP 800-53 IA-2: Identification and Authentication</div>
+              
+                  <div><b>GDPR:</b> GDPR Art. 25: Data protection by design and by default</div>
+              
+                  <div><b>PCI-DSS:</b> PCI DSS Req. 8.2.3: Strong password requirements</div>
+              
+            </div>
+
+
+      </div>
+      
+      <div class="finding" data-sev="Medium" data-tags="code,secrets" data-title="potential password assignment">
+        <div style="display:flex;justify-content:space-between">
+          <div><strong>Potential password assignment</strong><div class="meta">./samples\Dockerfile • <span class="badge">code, secrets</span></div></div>
+          <div style="text-align:right">
+            <div class="meta">Confidence: High</div>
+            <div style="height:6px"></div>
+            <div class="sev sev-Medium">Medium</div>
+          </div>
+        </div>
+        <div style="margin-top:8px" class="meta"><b>Explain:</b> Assignment looks like a password.</div>
+        <div style="margin-top:6px" class="meta"><b>AI Context:</b> Risk domain(s): Source Code Risk, Credential Management Risk. Hardcoded or plaintext secrets increase credential theft risk. Move secrets to a managed vault service and rotate keys regularly.</div>
+        <div style="margin-top:6px" class="meta"><b>Intel:</b> {'source': 'Local DB', 'cve': 'CVE-2023-12345', 'threat': 'Credential leakage risk', 'exploit': 'Exploit observed', 'cvss': 8.1}</div>
+            
+                <div style="margin-top:6px" class="meta">
+                   <b>Compliance:</b>
+               
+                  <div><b>CIS:</b> CIS Control 5.4: Manage service account credentials securely</div>
+              
+                  <div><b>ISO27001:</b> ISO 27001 A.9.4.3: Password management system</div>
+              
+                  <div><b>NIST:</b> NIST SP 800-53 IA-2: Identification and Authentication</div>
+              
+                  <div><b>GDPR:</b> GDPR Art. 25: Data protection by design and by default</div>
+              
+                  <div><b>PCI-DSS:</b> PCI DSS Req. 8.2.3: Strong password requirements</div>
+              
+            </div>
+
+
+      </div>
+      
+      <div class="finding" data-sev="Medium" data-tags="helm,k8s" data-title="helm chart missing limits">
+        <div style="display:flex;justify-content:space-between">
+          <div><strong>Helm Chart Missing Limits</strong><div class="meta">./samples\helm-values.yaml • <span class="badge">helm, k8s</span></div></div>
+          <div style="text-align:right">
+            <div class="meta">Confidence: Medium</div>
+            <div style="height:6px"></div>
+            <div class="sev sev-Medium">Medium</div>
+          </div>
+        </div>
+        <div style="margin-top:8px" class="meta"><b>Explain:</b> Resource limits missing; risk of cluster instability.</div>
+        <div style="margin-top:6px" class="meta"><b>AI Context:</b> Resource allocation without proper limits. Risk domain(s): IaC Misconfiguration (Helm), Cluster Security / Pod Risk.</div>
+        <div style="margin-top:6px" class="meta"><b>Intel:</b> {'source': 'Local DB', 'cve': None, 'threat': 'No known active exploit.', 'exploit': 'None detected', 'cvss': 2.2}</div>
+            
+                <div style="margin-top:6px" class="meta">
+                   <b>Compliance:</b>
+               
+                  <div><b>info:</b> No direct mapping found</div>
+              
+            </div>
+
+
+      </div>
+      
+      <div class="finding" data-sev="High" data-tags="aws,network" data-title="aws security group allows all ingress">
+        <div style="display:flex;justify-content:space-between">
+          <div><strong>AWS Security Group Allows All Ingress</strong><div class="meta">./samples\main.tf • <span class="badge">aws, network</span></div></div>
+          <div style="text-align:right">
+            <div class="meta">Confidence: Medium</div>
+            <div style="height:6px"></div>
+            <div class="sev sev-High">High</div>
+          </div>
+        </div>
+        <div style="margin-top:8px" class="meta"><b>Explain:</b> Firewall ingress allows all IPs (0.0.0.0/0).</div>
+        <div style="margin-top:6px" class="meta"><b>AI Context:</b> Improper Access Control — access not properly restricted. Risk domain(s): Cloud Misconfiguration (AWS), Attack Surface / Network Exposure. Unrestricted ingress allows anyone on the internet to reach the resource. Restrict CIDRs, disable public ingress, use zero-trust firewalls.</div>
+        <div style="margin-top:6px" class="meta"><b>Intel:</b> {'source': 'Local DB', 'cve': 'CVE-2022-56789', 'threat': 'Unrestricted network exposure', 'exploit': 'Exploit observed', 'cvss': 7.5}</div>
+            
+                <div style="margin-top:6px" class="meta">
+                   <b>Compliance:</b>
+               
+                  <div><b>info:</b> No direct mapping found</div>
+              
+            </div>
+
+
+      </div>
+      
+      <div class="finding" data-sev="High" data-tags="aws,storage" data-title="public s3 bucket acl">
+        <div style="display:flex;justify-content:space-between">
+          <div><strong>Public S3 Bucket ACL</strong><div class="meta">./samples\main.tf • <span class="badge">aws, storage</span></div></div>
+          <div style="text-align:right">
+            <div class="meta">Confidence: Medium</div>
+            <div style="height:6px"></div>
+            <div class="sev sev-High">High</div>
+          </div>
+        </div>
+        <div style="margin-top:8px" class="meta"><b>Explain:</b> S3 bucket publicly readable.</div>
+        <div style="margin-top:6px" class="meta"><b>AI Context:</b> Improper Access Control — access not properly restricted. Risk domain(s): Cloud Misconfiguration (AWS), Storage. Unrestricted ingress allows anyone on the internet to reach the resource. Restrict CIDRs, disable public ingress, use zero-trust firewalls.</div>
+        <div style="margin-top:6px" class="meta"><b>Intel:</b> {'source': 'Local DB', 'cve': 'CVE-2021-99999', 'threat': 'Sensitive data exposure', 'exploit': 'Used in campaigns', 'cvss': 9.0}</div>
+            
+                <div style="margin-top:6px" class="meta">
+                   <b>Compliance:</b>
+               
+                  <div><b>CIS:</b> CIS Control 13.6: Protect data in transit and at rest</div>
+              
+                  <div><b>ISO27001:</b> ISO 27001 A.13.2.1: Information transfer policies and procedures</div>
+              
+                  <div><b>NIST:</b> NIST SP 800-53 AC-4: Information Flow Enforcement</div>
+              
+                  <div><b>GDPR:</b> GDPR Art. 32: Security of processing</div>
+              
+                  <div><b>PCI-DSS:</b> PCI DSS Req. 4.1: Protect cardholder data in transit</div>
+              
+            </div>
+
+
+      </div>
+      
+      <div class="finding" data-sev="Low" data-tags="docker,versioning" data-title="docker uses latest tag">
+        <div style="display:flex;justify-content:space-between">
+          <div><strong>Docker Uses Latest Tag</strong><div class="meta">./samples\k8s.yaml • <span class="badge">docker, versioning</span></div></div>
+          <div style="text-align:right">
+            <div class="meta">Confidence: Medium</div>
+            <div style="height:6px"></div>
+            <div class="sev sev-Low">Low</div>
+          </div>
+        </div>
+        <div style="margin-top:8px" class="meta"><b>Explain:</b> Non-versioned tag reduces reproducibility.</div>
+        <div style="margin-top:6px" class="meta"><b>AI Context:</b> Unpinned dependencies / version control issue. Risk domain(s): Docker, Versioning.</div>
+        <div style="margin-top:6px" class="meta"><b>Intel:</b> {'source': 'Local DB', 'cve': None, 'threat': 'No known active exploit.', 'exploit': 'None detected', 'cvss': 3.3}</div>
+            
+                <div style="margin-top:6px" class="meta">
+                   <b>Compliance:</b>
+               
+                  <div><b>info:</b> No direct mapping found</div>
+              
+            </div>
+
+
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="footer">LCS-Scanner • Generated 2025-10-31T00:18:25.598706+00:00</div>
+</div>
+
+<script>
+const findings = [{"uid": "69361e1c97dbecddcfa9009ecf6e1e63", "id": "AZURE-OPEN-NET", "title": "Azure NSG Allows All", "file": "./samples\\azure.tf", "severity": "High", "score": 8.0, "confidence": "Medium", "explain": "Inbound rule exposes entire network.", "fix": "Restrict to trusted subnets.", "cwe": "CWE-284", "tags": ["azure", "network"], "match": "source_address_prefix      = \"*\"", "match_start": 505, "match_end": 537, "rule_pattern": "source_address_prefix\\s*=\\s*['\\\"]?(?:\\*|0\\.0\\.0\\.0/0)['\\\"]?", "ai_context": "Improper Access Control \u2014 access not properly restricted. Risk domain(s): Cloud Misconfiguration (Azure), Attack Surface / Network Exposure.", "compliance": {"info": ["No direct mapping found"]}, "numeric_score": 8.0, "severity_normalized": "High", "short_uid": "69361e1c97", "heuristic_score": 0.88, "likely_true_positive": true, "intel": {"source": "Local DB", "cve": null, "threat": "No known active exploit.", "exploit": "None detected", "cvss": 2.8}}, {"uid": "18138f49b1bfb9152e49cbd3e67dbe15", "id": "AZURE-STORAGE-HTTP", "title": "Azure Storage Allows HTTP", "file": "./samples\\azure.tf", "severity": "Medium", "score": 5.0, "confidence": "Medium", "explain": "HTTP enabled for Azure storage endpoints.", "fix": "Set enable_https_traffic_only=true.", "cwe": "CWE-319", "tags": ["azure", "encryption"], "match": "enable_https_traffic_only = false", "match_start": 848, "match_end": 881, "rule_pattern": "enable_https_traffic_only\\s*=\\s*false", "ai_context": "Cleartext transmission of sensitive information. Risk domain(s): Cloud Misconfiguration (Azure), Encryption.", "compliance": {"info": ["No direct mapping found"]}, "numeric_score": 5.0, "severity_normalized": "Medium", "short_uid": "18138f49b1", "heuristic_score": 0.68, "likely_true_positive": true, "intel": {"source": "Local DB", "cve": null, "threat": "No known active exploit.", "exploit": "None detected", "cvss": 5.8}}, {"uid": "82ce404f1f4b09bea745b1bb6e4131a6", "id": "AWS-OPEN-SG", "title": "AWS Security Group Allows All Ingress", "file": "./samples\\gcp.tf", "severity": "High", "score": 8.0, "confidence": "Medium", "explain": "Firewall ingress allows all IPs (0.0.0.0/0).", "fix": "Restrict to known CIDRs.", "cwe": "CWE-284", "tags": ["aws", "network"], "match": "0.0.0.0/0", "match_start": 357, "match_end": 366, "rule_pattern": "0\\.0\\.0\\.0/0", "ai_context": "Improper Access Control \u2014 access not properly restricted. Risk domain(s): Cloud Misconfiguration (AWS), Attack Surface / Network Exposure. Unrestricted ingress allows anyone on the internet to reach the resource. Restrict CIDRs, disable public ingress, use zero-trust firewalls.", "compliance": {"info": ["No direct mapping found"]}, "numeric_score": 8.0, "severity_normalized": "High", "short_uid": "82ce404f1f", "heuristic_score": 0.8, "likely_true_positive": true, "intel": {"source": "Local DB", "cve": "CVE-2022-56789", "threat": "Unrestricted network exposure", "exploit": "Exploit observed", "cvss": 7.5}}, {"uid": "238af97007051e9d34cd24a588dbbe83", "id": "GCP-PUBLIC-BUCKET", "title": "GCP Bucket Public Access", "file": "./samples\\gcp.tf", "severity": "High", "score": 8.0, "confidence": "Medium", "explain": "Public binding grants open access to data.", "fix": "Remove public members from IAM policy.", "cwe": "CWE-284", "tags": ["gcp", "storage"], "match": "allUsers", "match_start": 159, "match_end": 167, "rule_pattern": "(allUsers|allAuthenticatedUsers)", "ai_context": "Improper Access Control \u2014 access not properly restricted. Risk domain(s): Cloud Misconfiguration (GCP), Storage. Unrestricted ingress allows anyone on the internet to reach the resource. Restrict CIDRs, disable public ingress, use zero-trust firewalls.", "compliance": {"CIS": ["CIS Control 13.6: Protect data in transit and at rest"], "ISO27001": ["ISO 27001 A.13.2.1: Information transfer policies and procedures"], "NIST": ["NIST SP 800-53 AC-4: Information Flow Enforcement"], "GDPR": ["GDPR Art. 32: Security of processing"], "PCI-DSS": ["PCI DSS Req. 4.1: Protect cardholder data in transit"]}, "numeric_score": 8.0, "severity_normalized": "High", "short_uid": "238af97007", "heuristic_score": 0.8, "likely_true_positive": true, "intel": {"source": "Local DB", "cve": "CVE-2021-99999", "threat": "Sensitive data exposure", "exploit": "Used in campaigns", "cvss": 9.0}}, {"uid": "93cfc29aacbfc165b10f34a116137ee2", "id": "DOCKER-LATEST", "title": "Docker Uses Latest Tag", "file": "./samples\\Dockerfile", "severity": "Low", "score": 2.5, "confidence": "Medium", "explain": "Non-versioned tag reduces reproducibility.", "fix": "Pin versions or use digest.", "cwe": "CWE-829", "tags": ["docker", "versioning"], "match": ":latest", "match_start": 11, "match_end": 18, "rule_pattern": ":latest\\b", "ai_context": "Unpinned dependencies / version control issue. Risk domain(s): Docker, Versioning.", "compliance": {"info": ["No direct mapping found"]}, "numeric_score": 2.5, "severity_normalized": "Low", "short_uid": "93cfc29aac", "heuristic_score": 0.3, "likely_true_positive": false, "intel": {"source": "Local DB", "cve": null, "threat": "No known active exploit.", "exploit": "None detected", "cvss": 5.9}}, {"uid": "7a1365e0f0dfa903bae03762c1991e12", "id": "PLAINTEXT-PASSWORD", "title": "Plaintext Password Found", "file": "./samples\\Dockerfile", "severity": "High", "score": 8.0, "confidence": "High", "explain": "Sensitive password hardcoded.", "fix": "Use secret manager.", "cwe": "CWE-256", "tags": ["code", "secrets"], "match": "PASSWORD=\"root123\"", "match_start": 57, "match_end": 75, "rule_pattern": "password\\s*[:=]\\s*['\\\"][^'\\\"]{6,}['\\\"]", "ai_context": "Plaintext storage of sensitive credentials. Risk domain(s): Source Code Risk, Credential Management Risk. Hardcoded or plaintext secrets increase credential theft risk. Move secrets to a managed vault service and rotate keys regularly.", "compliance": {"CIS": ["CIS Control 6.2: Ensure secure credentials management", "CIS Control 5.4: Manage service account credentials securely"], "ISO27001": ["ISO 27001 A.9.2.3: Management of privileged access rights", "ISO 27001 A.9.4.3: Password management system"], "NIST": ["NIST SP 800-53 IA-5: Authenticator Management", "NIST SP 800-53 IA-2: Identification and Authentication"], "GDPR": ["GDPR Art. 25: Data protection by design and by default"], "PCI-DSS": ["PCI DSS Req. 8.2.3: Strong password requirements"]}, "numeric_score": 8.0, "severity_normalized": "High", "short_uid": "7a1365e0f0", "heuristic_score": 0.86, "likely_true_positive": true, "intel": {"source": "Local DB", "cve": "CVE-2023-12345", "threat": "Credential leakage risk", "exploit": "Exploit observed", "cvss": 8.1}}, {"uid": "38b9d44c99a22685125c9d44743f5e64", "id": "POTENTIAL-PW", "title": "Potential password assignment", "file": "./samples\\Dockerfile", "severity": "Medium", "score": 5.0, "confidence": "High", "explain": "Assignment looks like a password.", "fix": "Avoid storing passwords in code", "cwe": null, "tags": ["code", "secrets"], "match": "PASSWORD=\"root123\"", "match_start": 57, "match_end": 75, "rule_pattern": "(?i)password\\s*=\\s*['\\\"].{2,}['\\\"]", "ai_context": "Risk domain(s): Source Code Risk, Credential Management Risk. Hardcoded or plaintext secrets increase credential theft risk. Move secrets to a managed vault service and rotate keys regularly.", "compliance": {"CIS": ["CIS Control 5.4: Manage service account credentials securely"], "ISO27001": ["ISO 27001 A.9.4.3: Password management system"], "NIST": ["NIST SP 800-53 IA-2: Identification and Authentication"], "GDPR": ["GDPR Art. 25: Data protection by design and by default"], "PCI-DSS": ["PCI DSS Req. 8.2.3: Strong password requirements"]}, "numeric_score": 5.0, "severity_normalized": "Medium", "short_uid": "38b9d44c99", "heuristic_score": 0.66, "likely_true_positive": true, "intel": {"source": "Local DB", "cve": "CVE-2023-12345", "threat": "Credential leakage risk", "exploit": "Exploit observed", "cvss": 8.1}}, {"uid": "8bf6fc4e0f64255a1d4427586cc4550d", "id": "HELM-NO-LIMITS", "title": "Helm Chart Missing Limits", "file": "./samples\\helm-values.yaml", "severity": "Medium", "score": 5.0, "confidence": "Medium", "explain": "Resource limits missing; risk of cluster instability.", "fix": "Add CPU/memory limits.", "cwe": "CWE-770", "tags": ["helm", "k8s"], "match": "resources:\n  requests:", "match_start": 135, "match_end": 157, "rule_pattern": "resources:\\s*\\n\\s*requests:", "ai_context": "Resource allocation without proper limits. Risk domain(s): IaC Misconfiguration (Helm), Cluster Security / Pod Risk.", "compliance": {"info": ["No direct mapping found"]}, "numeric_score": 5.0, "severity_normalized": "Medium", "short_uid": "8bf6fc4e0f", "heuristic_score": 0.6, "likely_true_positive": true, "intel": {"source": "Local DB", "cve": null, "threat": "No known active exploit.", "exploit": "None detected", "cvss": 2.2}}, {"uid": "1474368f664bdff2b0891182075af819", "id": "AWS-OPEN-SG", "title": "AWS Security Group Allows All Ingress", "file": "./samples\\main.tf", "severity": "High", "score": 8.0, "confidence": "Medium", "explain": "Firewall ingress allows all IPs (0.0.0.0/0).", "fix": "Restrict to known CIDRs.", "cwe": "CWE-284", "tags": ["aws", "network"], "match": "0.0.0.0/0", "match_start": 242, "match_end": 251, "rule_pattern": "0\\.0\\.0\\.0/0", "ai_context": "Improper Access Control \u2014 access not properly restricted. Risk domain(s): Cloud Misconfiguration (AWS), Attack Surface / Network Exposure. Unrestricted ingress allows anyone on the internet to reach the resource. Restrict CIDRs, disable public ingress, use zero-trust firewalls.", "compliance": {"info": ["No direct mapping found"]}, "numeric_score": 8.0, "severity_normalized": "High", "short_uid": "1474368f66", "heuristic_score": 0.8, "likely_true_positive": true, "intel": {"source": "Local DB", "cve": "CVE-2022-56789", "threat": "Unrestricted network exposure", "exploit": "Exploit observed", "cvss": 7.5}}, {"uid": "b8ea68b5a387b166617718268590d82d", "id": "AWS-PUBLIC-S3", "title": "Public S3 Bucket ACL", "file": "./samples\\main.tf", "severity": "High", "score": 8.0, "confidence": "Medium", "explain": "S3 bucket publicly readable.", "fix": "Set ACL private and enable block public access.", "cwe": "CWE-284", "tags": ["aws", "storage"], "match": "public-read", "match_start": 346, "match_end": 357, "rule_pattern": "(?i)(public-read|public-read-write)", "ai_context": "Improper Access Control \u2014 access not properly restricted. Risk domain(s): Cloud Misconfiguration (AWS), Storage. Unrestricted ingress allows anyone on the internet to reach the resource. Restrict CIDRs, disable public ingress, use zero-trust firewalls.", "compliance": {"CIS": ["CIS Control 13.6: Protect data in transit and at rest"], "ISO27001": ["ISO 27001 A.13.2.1: Information transfer policies and procedures"], "NIST": ["NIST SP 800-53 AC-4: Information Flow Enforcement"], "GDPR": ["GDPR Art. 32: Security of processing"], "PCI-DSS": ["PCI DSS Req. 4.1: Protect cardholder data in transit"]}, "numeric_score": 8.0, "severity_normalized": "High", "short_uid": "b8ea68b5a3", "heuristic_score": 0.8, "likely_true_positive": true, "intel": {"source": "Local DB", "cve": "CVE-2021-99999", "threat": "Sensitive data exposure", "exploit": "Used in campaigns", "cvss": 9.0}}, {"uid": "d619985801b3665443326744b901fe7e", "id": "DOCKER-LATEST", "title": "Docker Uses Latest Tag", "file": "./samples\\k8s.yaml", "severity": "Low", "score": 2.5, "confidence": "Medium", "explain": "Non-versioned tag reduces reproducibility.", "fix": "Pin versions or use digest.", "cwe": "CWE-829", "tags": ["docker", "versioning"], "match": ":latest", "match_start": 261, "match_end": 268, "rule_pattern": ":latest\\b", "ai_context": "Unpinned dependencies / version control issue. Risk domain(s): Docker, Versioning.", "compliance": {"info": ["No direct mapping found"]}, "numeric_score": 2.5, "severity_normalized": "Low", "short_uid": "d619985801", "heuristic_score": 0.3, "likely_true_positive": false, "intel": {"source": "Local DB", "cve": null, "threat": "No known active exploit.", "exploit": "None detected", "cvss": 3.3}}];
+
+function exportJSON(){
+  const blob = new Blob([JSON.stringify(findings, null, 2)], {type:'application/json'});
+  const a = document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='lcs_report.json'; a.click();
+}
+function exportCSV(){
+  const rows = [["id","title","file","severity","score","confidence","tags","fix"]];
+  findings.forEach(f => rows.push([f.uid||f.id,f.title,f.file,f.severity,f.score,f.confidence,(f.tags||[]).join(';'),f.fix||'']));
+  const csv = rows.map(r => r.map(c => `"${String(c||'').replace(/"/g,'""')}"`).join(',')).join('\n');
+  const blob = new Blob([csv], {type:'text/csv'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='lcs_report.csv'; a.click();
+}
+
+function buildChart(){
+  const ctx = document.getElementById('sevChart').getContext('2d');
+  const sevCounts = {Critical:0,High:0,Medium:0,Low:0,Info:0};
+  findings.forEach(f => { sevCounts[f.severity] = (sevCounts[f.severity]||0) + 1; });
+  new Chart(ctx, {type:'doughnut', data:{labels:Object.keys(sevCounts), datasets:[{data:Object.values(sevCounts), backgroundColor:['#7f1d1d','#ef4444','#f97316','#16a34a','#3b82f6']}]}, options:{plugins:{legend:{position:'bottom'}}}});
+}
+buildChart();
+
+// ✅ Fix GSAP animation timing to load after chart
+setTimeout(() => {
+  gsap.from(".finding", {duration:0.6,opacity:0,stagger:0.05,delay:0.5});
+}, 600);
+
+function applyFilters(){
+  const q = (document.getElementById('searchBox').value||'').toLowerCase();
+  const sev = document.getElementById('sevFilter').value;
+  const tag = (document.getElementById('tagFilter').value||'').toLowerCase();
+  document.querySelectorAll('.finding').forEach(el=>{
+    const title = el.dataset.title||'';
+    const tags = el.dataset.tags||'';
+    const matches = (!q || title.includes(q)) && (!sev || el.dataset.sev===sev) && (!tag || tags.toLowerCase().includes(tag));
+    el.style.display = matches ? 'block' : 'none';
+  });
+}
+document.getElementById('searchBox').addEventListener('input', applyFilters);
+document.getElementById('sevFilter').addEventListener('change', applyFilters);
+document.getElementById('tagFilter').addEventListener('change', applyFilters);
+</script>
+</body>
+</html>
